@@ -441,7 +441,8 @@ footer p {
 
     .contact-item {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
         gap: 0.5rem;
         padding: 0.5rem 0;
     }
