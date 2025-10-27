@@ -1,0 +1,450 @@
+/* Regal Color Palette - Navy & Gold */
+:root {
+    --navy-dark: #1a2332;
+    --navy-primary: #2c3e50;
+    --navy-light: #34495e;
+    --gold: #d4af37;
+    --gold-light: #f0d679;
+    --gold-dark: #b8942c;
+    --cream: #f5f3ee;
+    --white: #ffffff;
+    --light-blue: #d8e7f3;
+    --text-light: #c9ccd1;
+    --border-gold: #d4af37;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: var(--navy-dark);
+    line-height: 1.7;
+    background-color: var(--light-blue);
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Header with Logo */
+.hero {
+    background: rgb(32, 51, 83);
+    padding: 0;
+    border-bottom: 2px solid var(--gold);
+}
+
+.logo-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.logo {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Container */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    background-color: var(--light-blue);
+}
+
+/* Decorative Dividers */
+.divider {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 1.5rem auto;
+}
+
+.divider-ornament {
+    width: 100px;
+    height: 3px;
+    background: var(--gold);
+    margin: 0 auto 2rem;
+    position: relative;
+}
+
+.divider-ornament::before,
+.divider-ornament::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid var(--gold);
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.divider-ornament::before {
+    left: -20px;
+}
+
+.divider-ornament::after {
+    right: -20px;
+}
+
+/* Welcome Section */
+.welcome {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+
+.welcome h2 {
+    font-size: 3rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.welcome p {
+    font-size: 1.2rem;
+    color: var(--navy-dark);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.9;
+}
+
+/* Building Showcase with Frame */
+.building-showcase {
+    margin: 4rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.building-frame {
+    position: relative;
+    max-width: 800px;
+    padding: 20px;
+    background: var(--cream);
+    border: 3px solid var(--gold);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.building-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Cards */
+.card {
+    background: var(--cream);
+    border-radius: 0;
+    padding: 3rem;
+    border: 1px solid var(--gold);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--gold);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+}
+
+/* Documents Section */
+.documents-section {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.documents-section h2 {
+    color: var(--gold);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.documents-section p {
+    color: var(--navy-dark);
+    margin: 2rem auto;
+    font-size: 1.1rem;
+    max-width: 700px;
+}
+
+/* Button */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.2rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border: 2px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gold);
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    left: 0;
+}
+
+.btn:hover {
+    color: var(--navy-dark);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+}
+
+/* Contact Section */
+.contact-section {
+    margin-top: 4rem;
+}
+
+.contact-section > h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* Management Card */
+.management-card {
+    margin-bottom: 4rem;
+    border-left: 4px solid var(--gold);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    flex-wrap: wrap;
+}
+
+.card-header h3 {
+    font-size: 2rem;
+    color: var(--gold);
+    font-weight: 600;
+}
+
+.badge {
+    background: var(--gold);
+    color: var(--navy-dark);
+    padding: 0.5rem 1.2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-details {
+    padding-left: 0;
+}
+
+.company-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--navy-dark);
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem 0;
+}
+
+.contact-label {
+    min-width: 80px;
+    color: var(--gold);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.contact-item a {
+    color: var(--navy-dark);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: var(--gold);
+}
+
+/* Board Members */
+.board-members {
+    margin-top: 3rem;
+}
+
+.board-members h3 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.board-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.board-card {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--gold);
+    border-top: 3px solid var(--gold);
+}
+
+.board-card h4 {
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.board-card a {
+    color: var(--navy-dark);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.board-card a:hover {
+    color: var(--gold);
+}
+
+/* Footer */
+footer {
+    background: var(--light-blue);
+    color: var(--navy-dark);
+    text-align: center;
+    padding: 3rem 2rem;
+    margin-top: 4rem;
+    border-top: 2px solid var(--gold);
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        padding: 0;
+    }
+
+    .logo-container {
+        max-width: 100%;
+    }
+
+    .container {
+        padding: 3rem 1.5rem;
+    }
+
+    .welcome h2 {
+        font-size: 2.2rem;
+    }
+
+    .welcome p {
+        font-size: 1rem;
+    }
+
+    .building-frame {
+        padding: 15px;
+        border-width: 2px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .documents-section h2,
+    .contact-section > h2,
+    .board-members h3 {
+        font-size: 2rem;
+    }
+
+    .card {
+        padding: 2rem 1.5rem;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .board-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .btn {
+        padding: 1rem 2rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome h2 {
+        font-size: 1.8rem;
+    }
+
+    .documents-section h2,
+    .contact-section > h2 {
+        font-size: 1.7rem;
+    }
+
+    .building-frame {
+        padding: 10px;
+    }
+}
