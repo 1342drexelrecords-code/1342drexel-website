@@ -1,104 +1,733 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="1342 Drexel Association - Miami Beach Condo Association">
-    <title>1342 Drexel Association</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="1342 Drexel Association - Miami Beach Condo Association">
+<title>1342 Drexel Association | Miami Beach</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Limelight&family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0E2A3D;
+    --ocean: #1B4965;
+    --coral: #E8826B;
+    --cream: #F5F1E8;
+    --gold: #C9A961;
+    --mint: #A8C9B5;
+    --paper: #FAF6EC;
+    --shadow: rgba(14, 42, 61, 0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cormorant Garamond', serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ============ HERO WITH ANIMATED DECO BACKGROUND ============ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--ocean);
+    color: var(--cream);
+  }
+
+  /* The looping "video" — layered animated SVG */
+  .deco-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.55;
+  }
+
+  .deco-bg svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Sunburst rotation */
+  .sunburst {
+    transform-origin: center;
+    animation: spin 90s linear infinite;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Pulsing fan */
+  .fan-pulse {
+    transform-origin: center bottom;
+    animation: pulse 8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.08); opacity: 0.7; }
+  }
+
+  /* Chevron march */
+  .chevron-row {
+    animation: march 12s linear infinite;
+  }
+  @keyframes march {
+    to { transform: translateX(-80px); }
+  }
+
+  /* Shimmer overlay */
+  .shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(201, 169, 97, 0.08) 50%,
+      transparent 70%
+    );
+    animation: shimmer 14s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%, 100% { transform: translateX(-30%); }
+    50% { transform: translateX(30%); }
+  }
+
+  /* Vignette */
+  .vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 30%,
+      rgba(14, 42, 61, 0.5) 100%
+    );
+    z-index: 2;
+  }
+
+  /* ============ HERO CONTENT ============ */
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 2rem;
+    max-width: 900px;
+  }
+
+  .deco-frame {
+    border: 1px solid var(--gold);
+    padding: 4rem 3rem;
+    position: relative;
+    background: rgba(14, 42, 61, 0.35);
+    backdrop-filter: blur(2px);
+  }
+
+  /* Corner ornaments */
+  .deco-frame::before,
+  .deco-frame::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 1px solid var(--gold);
+  }
+  .deco-frame::before {
+    top: -8px; left: -8px;
+    border-right: none; border-bottom: none;
+  }
+  .deco-frame::after {
+    bottom: -8px; right: -8px;
+    border-left: none; border-top: none;
+  }
+
+  .eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.5em;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    padding-left: 0.5em;
+  }
+
+  .hero-title {
+    font-family: 'Limelight', serif;
+    font-size: clamp(3rem, 10vw, 7rem);
+    line-height: 0.95;
+    color: var(--cream);
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-title .number {
+    display: block;
+    font-size: 1.2em;
+    color: var(--coral);
+  }
+
+  .hero-title .name {
+    display: block;
+    font-size: 0.55em;
+    letter-spacing: 0.4em;
+    color: var(--cream);
+    margin-top: 0.5rem;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0 1.5rem;
+  }
+  .hero-divider .line {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero-divider .diamond {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--mint);
+    font-weight: 300;
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    color: var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ============ MAIN CONTENT ============ */
+  main {
+    background: var(--paper);
+    position: relative;
+  }
+
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 7rem 2rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Limelight', serif;
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    color: var(--ocean);
+    letter-spacing: 0.02em;
+  }
+
+  .section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 1.5rem 0 0;
+  }
+  .section-divider .line {
+    width: 40px;
+    height: 1px;
+    background: var(--ocean);
+    opacity: 0.4;
+  }
+  .section-divider svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* ============ RESOURCE TILES ============ */
+  .resources {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .tile {
+    background: var(--cream);
+    border: 1px solid rgba(27, 73, 101, 0.15);
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    color: var(--ink);
+    overflow: hidden;
+  }
+
+  .tile::before {
+    content: '';
+    position: absolute;
+    top: 12px; left: 12px; right: 12px; bottom: 12px;
+    border: 1px solid var(--gold);
+    opacity: 0.3;
+    transition: all 0.4s ease;
+    pointer-events: none;
+  }
+
+  .tile:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px var(--shadow);
+    background: var(--paper);
+  }
+  .tile:hover::before {
+    opacity: 0.8;
+    top: 8px; left: 8px; right: 8px; bottom: 8px;
+  }
+
+  .tile-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 1.5rem;
+    color: var(--coral);
+  }
+
+  .tile-title {
+    font-family: 'Limelight', serif;
+    font-size: 1.4rem;
+    color: var(--ocean);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .tile-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--ocean);
+    opacity: 0.7;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tile-cta {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--coral);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .tile-cta::after {
+    content: '→';
+    transition: transform 0.3s ease;
+  }
+  .tile:hover .tile-cta::after {
+    transform: translateX(6px);
+  }
+
+  /* ============ CONTACT ============ */
+  .contact-section {
+    background: var(--ocean);
+    color: var(--cream);
+    padding: 7rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-section .section-eyebrow { color: var(--coral); }
+  .contact-section .section-title { color: var(--cream); }
+  .contact-section .section-divider .line { background: var(--gold); opacity: 0.6; }
+
+  .contact-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.07;
+    pointer-events: none;
+  }
+
+  .contact-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .contact-card {
+    border-top: 1px solid var(--gold);
+    padding-top: 2rem;
+  }
+
+  .contact-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .contact-name {
+    font-family: 'Limelight', serif;
+    font-size: 1.5rem;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    letter-spacing: 0.03em;
+  }
+
+  .contact-detail {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-detail a {
+    color: var(--mint);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  .contact-detail a:hover {
+    border-color: var(--mint);
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 3rem 2rem;
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  footer .ornament {
+    width: 80px;
+    height: 24px;
+    margin: 0 auto 1.5rem;
+    color: var(--gold);
+  }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 700px) {
+    .deco-frame { padding: 3rem 1.5rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .section { padding: 4.5rem 1.25rem; }
+    .contact-section { padding: 4.5rem 1.25rem; }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .sunburst, .fan-pulse, .chevron-row, .shimmer, .scroll-cue {
+      animation: none;
+    }
+  }
+</style>
 </head>
 <body>
-    <header class="hero">
-        <div class="logo-container">
-            <img src="images/logo.jpg" alt="1342 Drexel Association Logo" class="logo">
-        </div>
-    </header>
 
-    <main class="container">
-        <section class="welcome">
-            <div class="divider-ornament"></div>
-        </section>
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <!-- Animated Art Deco "video" background -->
+  <div class="deco-bg">
+    <!-- Sunburst (slow rotation) -->
+    <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#C9A961" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#C9A961" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <g class="sunburst" style="transform-origin: 600px 400px;">
+        <!-- Long rays -->
+        <g stroke="#C9A961" stroke-width="1" fill="none" opacity="0.5">
+          <!-- 24 rays around center -->
+          <line x1="600" y1="400" x2="600" y2="-200"/>
+          <line x1="600" y1="400" x2="755" y2="-180"/>
+          <line x1="600" y1="400" x2="900" y2="-120"/>
+          <line x1="600" y1="400" x2="1030" y2="-20"/>
+          <line x1="600" y1="400" x2="1130" y2="120"/>
+          <line x1="600" y1="400" x2="1190" y2="280"/>
+          <line x1="600" y1="400" x2="1200" y2="400"/>
+          <line x1="600" y1="400" x2="1190" y2="520"/>
+          <line x1="600" y1="400" x2="1130" y2="680"/>
+          <line x1="600" y1="400" x2="1030" y2="820"/>
+          <line x1="600" y1="400" x2="900" y2="920"/>
+          <line x1="600" y1="400" x2="755" y2="980"/>
+          <line x1="600" y1="400" x2="600" y2="1000"/>
+          <line x1="600" y1="400" x2="445" y2="980"/>
+          <line x1="600" y1="400" x2="300" y2="920"/>
+          <line x1="600" y1="400" x2="170" y2="820"/>
+          <line x1="600" y1="400" x2="70" y2="680"/>
+          <line x1="600" y1="400" x2="10" y2="520"/>
+          <line x1="600" y1="400" x2="0" y2="400"/>
+          <line x1="600" y1="400" x2="10" y2="280"/>
+          <line x1="600" y1="400" x2="70" y2="120"/>
+          <line x1="600" y1="400" x2="170" y2="-20"/>
+          <line x1="600" y1="400" x2="300" y2="-120"/>
+          <line x1="600" y1="400" x2="445" y2="-180"/>
+        </g>
+        <!-- Concentric circles -->
+        <circle cx="600" cy="400" r="120" fill="none" stroke="#C9A961" stroke-width="1" opacity="0.6"/>
+        <circle cx="600" cy="400" r="80" fill="none" stroke="#E8826B" stroke-width="1" opacity="0.5"/>
+        <circle cx="600" cy="400" r="40" fill="none" stroke="#C9A961" stroke-width="0.8" opacity="0.7"/>
+        <circle cx="600" cy="400" r="200" fill="url(#sunGlow)"/>
+      </g>
+    </svg>
 
-        <section class="building-showcase">
-            <div class="building-frame">
-                <img src="images/drexel-final.jpg" alt="1342 Drexel Building" class="building-image">
-            </div>
-        </section>
+    <!-- Bottom fan (pulsing) -->
+    <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <g class="fan-pulse" style="transform-origin: 600px 800px;">
+        <g stroke="#A8C9B5" stroke-width="1" fill="none" opacity="0.4">
+          <path d="M 600 800 L 200 400"/>
+          <path d="M 600 800 L 280 380"/>
+          <path d="M 600 800 L 360 370"/>
+          <path d="M 600 800 L 440 365"/>
+          <path d="M 600 800 L 520 363"/>
+          <path d="M 600 800 L 600 362"/>
+          <path d="M 600 800 L 680 363"/>
+          <path d="M 600 800 L 760 365"/>
+          <path d="M 600 800 L 840 370"/>
+          <path d="M 600 800 L 920 380"/>
+          <path d="M 600 800 L 1000 400"/>
+        </g>
+        <!-- Arcs of the fan -->
+        <path d="M 200 400 Q 600 200 1000 400" fill="none" stroke="#C9A961" stroke-width="1" opacity="0.5"/>
+        <path d="M 280 460 Q 600 300 920 460" fill="none" stroke="#C9A961" stroke-width="1" opacity="0.4"/>
+        <path d="M 360 520 Q 600 400 840 520" fill="none" stroke="#C9A961" stroke-width="1" opacity="0.3"/>
+      </g>
+    </svg>
 
-        <section class="card documents-section">
-            <h2>Owner Resources</h2>
-            <div class="divider"></div>
-            <p>Access important documents, make payments, and view your account information. For questions regarding payments or balances, please contact Royal Management.</p>
-            <div class="resources-grid">
-                <a href="https://drive.google.com/drive/u/2/folders/1lrFonfDi-_vyZZEX-SPiYOaa0Nz1KFLu" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                    <span>Access Documents</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                </a>
-                <a href="https://pay.westernalliancebank.com/Home" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                    <span>Pay Dues</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                </a>
-                <a href="https://engage.goenumerate.com/s/drexelcondo/mypayments.php" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                    <span>View Balance</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                </a>
-            </div>
-        </section>
+    <!-- Top chevron border (marching) -->
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none" style="height: 60px; top: 0; bottom: auto;" aria-hidden="true">
+      <g class="chevron-row" fill="#C9A961" opacity="0.5">
+        <!-- Repeating chevrons -->
+        <polygon points="0,40 20,20 40,40 20,60"/>
+        <polygon points="40,40 60,20 80,40 60,60"/>
+        <polygon points="80,40 100,20 120,40 100,60"/>
+        <polygon points="120,40 140,20 160,40 140,60"/>
+        <polygon points="160,40 180,20 200,40 180,60"/>
+        <polygon points="200,40 220,20 240,40 220,60"/>
+        <polygon points="240,40 260,20 280,40 260,60"/>
+        <polygon points="280,40 300,20 320,40 300,60"/>
+        <polygon points="320,40 340,20 360,40 340,60"/>
+        <polygon points="360,40 380,20 400,40 380,60"/>
+        <polygon points="400,40 420,20 440,40 420,60"/>
+        <polygon points="440,40 460,20 480,40 460,60"/>
+        <polygon points="480,40 500,20 520,40 500,60"/>
+        <polygon points="520,40 540,20 560,40 540,60"/>
+        <polygon points="560,40 580,20 600,40 580,60"/>
+        <polygon points="600,40 620,20 640,40 620,60"/>
+        <polygon points="640,40 660,20 680,40 660,60"/>
+        <polygon points="680,40 700,20 720,40 700,60"/>
+        <polygon points="720,40 740,20 760,40 740,60"/>
+        <polygon points="760,40 780,20 800,40 780,60"/>
+        <polygon points="800,40 820,20 840,40 820,60"/>
+        <polygon points="840,40 860,20 880,40 860,60"/>
+        <polygon points="880,40 900,20 920,40 900,60"/>
+        <polygon points="920,40 940,20 960,40 940,60"/>
+        <polygon points="960,40 980,20 1000,40 980,60"/>
+        <polygon points="1000,40 1020,20 1040,40 1020,60"/>
+        <polygon points="1040,40 1060,20 1080,40 1060,60"/>
+        <polygon points="1080,40 1100,20 1120,40 1100,60"/>
+        <polygon points="1120,40 1140,20 1160,40 1140,60"/>
+        <polygon points="1160,40 1180,20 1200,40 1180,60"/>
+        <polygon points="1200,40 1220,20 1240,40 1220,60"/>
+        <polygon points="1240,40 1260,20 1280,40 1260,60"/>
+      </g>
+    </svg>
 
-        <section class="contact-section">
-            <h2>Contact Information</h2>
-            <div class="divider"></div>
+    <!-- Shimmer overlay -->
+    <div class="shimmer"></div>
+  </div>
 
-            <div class="card management-card">
-                <div class="card-header">
-                    <h3>Property Management</h3>
-                    <span class="badge">Primary Contact</span>
-                </div>
-                <div class="contact-details">
-                    <p class="company-name">Royal Management</p>
-                    <div class="contact-item">
-                        <span class="contact-label">Email</span>
-                        <a href="mailto:Request@theroyalgroup.net">Request@theroyalgroup.net</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-label">Phone</span>
-                        <a href="tel:305-535-3575,114">305-535-3575 Ext: 114</a>
-                    </div>
-                </div>
-            </div>
+  <div class="vignette"></div>
 
-            <div class="card management-card">
-                <div class="card-header">
-                    <h3>Board of Directors</h3>
-                </div>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <span class="contact-label">Email</span>
-                        <a href="mailto:board@1342drexel.com">board@1342drexel.com</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+  <!-- Hero content -->
+  <div class="hero-content">
+    <div class="deco-frame">
+      <div class="eyebrow">Miami Beach · Established 1936</div>
+      <h1 class="hero-title">
+        <span class="number">1342</span>
+        <span class="name">Drexel</span>
+      </h1>
+      <div class="hero-divider">
+        <span class="line"></span>
+        <span class="diamond"></span>
+        <span class="line"></span>
+      </div>
+      <p class="hero-subtitle">A residence of the South Beach historic district</p>
+    </div>
+  </div>
 
-    <footer>
-        <p>&copy; 2025 1342 Drexel Association. All rights reserved.</p>
-    </footer>
+  <div class="scroll-cue">Scroll ↓</div>
+</section>
+
+<!-- ============ OWNER RESOURCES ============ -->
+<main>
+  <section class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">For Residents</div>
+      <h2 class="section-title">Owner Resources</h2>
+      <div class="section-divider">
+        <span class="line"></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+          <polygon points="12,2 14,10 22,12 14,14 12,22 10,14 2,12 10,10" fill="#1B4965" opacity="0.6"/>
+        </svg>
+        <span class="line"></span>
+      </div>
+    </div>
+
+    <div class="resources">
+      <!-- Documents tile -->
+      <a href="https://drive.google.com/drive/u/2/folders/1lrFonfDi-_vyZZEX-SPiYOaa0Nz1KFLu" class="tile">
+        <svg class="tile-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <rect x="14" y="10" width="36" height="44" rx="1"/>
+          <line x1="22" y1="22" x2="42" y2="22"/>
+          <line x1="22" y1="30" x2="42" y2="30"/>
+          <line x1="22" y1="38" x2="36" y2="38"/>
+          <polygon points="32,46 33,49 36,49 33.5,51 34.5,54 32,52 29.5,54 30.5,51 28,49 31,49" fill="currentColor" stroke="none"/>
+        </svg>
+        <h3 class="tile-title">Documents</h3>
+        <p class="tile-desc">Governing records, minutes & filings</p>
+        <span class="tile-cta">Access Archive</span>
+      </a>
+
+      <!-- Pay Dues tile -->
+      <a href="https://pay.westernalliancebank.com/Home" class="tile">
+        <svg class="tile-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <circle cx="32" cy="32" r="22"/>
+          <circle cx="32" cy="32" r="17"/>
+          <text x="32" y="38" text-anchor="middle" font-family="Limelight, serif" font-size="16" fill="currentColor" stroke="none">$</text>
+          <line x1="32" y1="6" x2="32" y2="12"/>
+          <line x1="32" y1="52" x2="32" y2="58"/>
+          <line x1="6" y1="32" x2="12" y2="32"/>
+          <line x1="52" y1="32" x2="58" y2="32"/>
+        </svg>
+        <h3 class="tile-title">Pay Dues</h3>
+        <p class="tile-desc">Submit assessments securely</p>
+        <span class="tile-cta">Make Payment</span>
+      </a>
+
+      <!-- Balance tile -->
+      <a href="https://engage.goenumerate.com/s/drexelcondo/mypayments.php" class="tile">
+        <svg class="tile-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <rect x="10" y="16" width="44" height="32" rx="1"/>
+          <line x1="10" y1="26" x2="54" y2="26"/>
+          <line x1="18" y1="36" x2="30" y2="36"/>
+          <line x1="18" y1="42" x2="26" y2="42"/>
+          <rect x="38" y="34" width="10" height="10" fill="currentColor" opacity="0.2" stroke="none"/>
+          <line x1="38" y1="34" x2="48" y2="44"/>
+          <line x1="48" y1="34" x2="38" y2="44"/>
+        </svg>
+        <h3 class="tile-title">Balance</h3>
+        <p class="tile-desc">Review your account ledger</p>
+        <span class="tile-cta">View Account</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact-section">
+    <!-- Subtle background pattern -->
+    <svg class="contact-bg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <pattern id="decoPattern" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+          <circle cx="40" cy="40" r="30" fill="none" stroke="#C9A961" stroke-width="0.5"/>
+          <polygon points="40,20 50,40 40,60 30,40" fill="#C9A961"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#decoPattern)"/>
+    </svg>
+
+    <div class="section-header">
+      <div class="section-eyebrow">Get in Touch</div>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-divider">
+        <span class="line"></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C9A961" stroke-width="1" aria-hidden="true">
+          <polygon points="12,2 14,10 22,12 14,14 12,22 10,14 2,12 10,10" fill="#C9A961" opacity="0.7"/>
+        </svg>
+        <span class="line"></span>
+      </div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-label">Property Management</div>
+        <div class="contact-name">Royal Management</div>
+        <p class="contact-detail">For questions regarding payments or balances</p>
+        <p class="contact-detail"><a href="mailto:Request@theroyalgroup.net">Request@theroyalgroup.net</a></p>
+        <p class="contact-detail"><a href="tel:305-535-3575,114">305 · 535 · 3575 ext. 114</a></p>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-label">Board of Directors</div>
+        <div class="contact-name">The Board</div>
+        <p class="contact-detail">For governance and association inquiries</p>
+        <p class="contact-detail"><a href="mailto:board@1342drexel.com">board@1342drexel.com</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <svg class="ornament" viewBox="0 0 80 24" aria-hidden="true">
+    <line x1="0" y1="12" x2="28" y2="12" stroke="currentColor" stroke-width="0.5"/>
+    <polygon points="40,4 44,12 40,20 36,12" fill="currentColor"/>
+    <circle cx="32" cy="12" r="1.5" fill="currentColor"/>
+    <circle cx="48" cy="12" r="1.5" fill="currentColor"/>
+    <line x1="52" y1="12" x2="80" y2="12" stroke="currentColor" stroke-width="0.5"/>
+  </svg>
+  <p>© 2026 1342 Drexel Association · All Rights Reserved</p>
+</footer>
+
 </body>
 </html>
